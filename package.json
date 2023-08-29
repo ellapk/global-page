@@ -1,0 +1,17 @@
+{
+  "name": "jira-global-page-custom-ui",
+  "version": "1.0.23",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  },
+  "dependencies": {
+    "@forge/api": "^2.18.4",
+    "@forge/resolver": "1.5.14",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0"
+  }
+}
