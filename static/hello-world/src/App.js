@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
+import axios from 'axios';
 
 function App() {
     const [data, setData] = useState(null);
+    const [apidata, setApiData] = useState([]);
     const express = require('express');
     const mysql = require('mysql2');
     const app = express();
@@ -48,9 +50,23 @@ function App() {
         invoke('getText', { example: 'my-invoke-variable' }).then(setData);
     }, []);
 
+    useEffect(() => {
+        axios.get('/api/data') //서버의 api 엔드포인트
+            .then(response => {
+                setApiData(response.apidata);
+            })
+            .catch(error=>{
+                console.error('Error fetching data:', error);
+            });
+    },[]);
+
     return (
         <div>
             {data ? data : 'Loading...'}
+            <h1>Mysql data</h1>
+            {apidata.map(item => (
+                <li key={item.id}>{item.name}</li>
+            ))}
         </div>
     );
 }
